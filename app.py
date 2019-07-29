@@ -10,7 +10,10 @@ def hello_world(phone_number):
     if type(phone_number) is not str:
         phone_number = str(phone_number)
     info = mysql.test(phone_number)
-    return '快递单号: '+info[0] + '\n姓名: '+ info[1]
+    if info is not 1:
+        return '快递单号: '+info[0] + '\n姓名: '+ info[1]
+    else:
+        return '你要查询的手机号码关联的快递号不存在,请核对后查询'
 
 
 
