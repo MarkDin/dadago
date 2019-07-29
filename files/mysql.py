@@ -88,8 +88,8 @@ def query_express_number_by_phone(number):
 def test(number):
     sql_str = 'select express_number, name from express WHERE express.phone_number = {} ORDER BY express.time LIMIT 1'.format(
         number)
-    res = engine.execute(sql_str).fetchall()[0]
-    if res is not None:
+    res = engine.execute(sql_str).fetchall()
+    if len(res) is not 0:
         print(res)
         return res
     else:
