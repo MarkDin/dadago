@@ -16,6 +16,9 @@ def hello_world(phone_number):
         return '你要查询的手机号码关联的快递号不存在,请核对后查询'
 
 
+@app.route('/')
+def index():
+    return 'hello, dadago'
 
 if __name__ == '__main__':
     app.run(threaded=True)
