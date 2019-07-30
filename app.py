@@ -1,6 +1,5 @@
 from flask import Flask
 from files import mysql
-from flask import url_for, render_template, request, flash, redirect, get_flashed_messages, send_from_directory
 
 app = Flask(__name__)
 
