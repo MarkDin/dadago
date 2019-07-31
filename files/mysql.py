@@ -14,32 +14,13 @@ base = declarative_base()
 
 DBSession = scoped_session(sessionmaker())
 DBSession.configure(bind=engine)
-
-
-# class User(base):
-#     __tablename__ = 'user'
-#     # id = Column(Integer)
-#     name = Column(String(32), primary_key=True, nullable=False)
-#     phone_number = Column(String(64), primary_key=True, nullable=False)
-#     # express_id = relationship('Express')
-
-
 class Express(base):
     __tablename__ = 'express'
     express_number = Column(String(64), nullable=False)
-    phone_number = Column(String(64), primary_key=True, nullable=False)  # 电话号码为主键
+    # 电话号码为主键
+    phone_number = Column(String(64), primary_key=True, nullable=False)
     name = Column(String(64))
     time = Column(DATETIME(), primary_key=True, default=datetime.datetime.now)
-
-
-# res = session.query(User).filter(User.name == 'jack').first()
-# print(res)
-
-# e1 = Express(express_id='12354645', user_name='rose', user_phone='84856473689')
-# DBSession.add(e1)
-# DBSession.commit()
-
-
 def insert_into_database(D):
     size = len(D['name'])
     print('size: ', size)
@@ -77,7 +58,7 @@ def query_express_number_by_phone(number):
     res = DBSession.query(Express).filter(Express.phone_number == number).order_by(Express.time).first()
 
     if res is not None:
-        #print('快递单号为: ' + res.express_number + '\n收件人为: ' + res.name + '\n')
+        # print('快递单号为: ' + res.express_number + '\n收件人为: ' + res.name + '\n')
         # return '快递单号为: ' + res.express_number + '\n收件人为: ' + res.name + '\n'
         return 0
     else:
@@ -85,16 +66,7 @@ def query_express_number_by_phone(number):
         return 1
 
 
-def test(number):
-    sql_str = 'select express_number, name from express WHERE express.phone_number = {} ORDER BY express.time LIMIT 1'.format(
-        number)
-    res = engine.execute(sql_str).fetchall()
-    if len(res) is not 0:
-        print(res)
-        return res
-    else:
-        print('您要查询的手机号码不存在,请核对后查询\n')
-        return 1
+
 
 
 def get_test_data():
@@ -133,10 +105,10 @@ def check_2():
             error.append(data[i])
 
     print('cnt:' + str(cnt))
-    print('2\n',error)
+    print('2\n', error)
     with open('error_phone_number', 'a+') as f:
         for _ in error:
-            f.write(_+'\n')
+            f.write(_ + '\n')
         f.write('----------\n')
 
 

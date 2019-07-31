@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dadago</title>
+    <link rel="stylesheet" href="../static/KDNWidget.css"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="../static/KDNWidget.js"></script>
+    <script src="../static/ajax_for_express.js"></script>
+
+</head>
+<body>
+<form method="post">
+    <input id="phone_number" type="text" placeholder="手机号码" name="phone_number">
+    <input class="btn" type="button" value="查询" onclick=query_express()>
+</form>
+<div id="showExpress">
+
+</div>
+
+</body>
+</html>
