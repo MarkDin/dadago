@@ -13,11 +13,9 @@ from my_log import debug_logger, static_logger
 '''
 engine = create_engine("mysql+pymysql://root:154310@116.62.4.61/dadago", isolation_level="READ UNCOMMITTED",
                        encoding='utf-8', echo=False)
-
 mysql_dbsession = scoped_session(sessionmaker())
 # 将engine连接的数据库绑定到mysql_dbsession
 mysql_dbsession.configure(bind=engine)
-
 
 def insert_into_database(D):
     '''
@@ -26,7 +24,6 @@ def insert_into_database(D):
     :return:
     '''
     size = len(D['name'])
-    print('size: ', size)
     # 批量插入到数据库
     mysql_dbsession.bulk_insert_mappings(
         Express,  # 表名
