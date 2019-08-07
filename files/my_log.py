@@ -22,8 +22,8 @@ static_logger.addHandler(static_handler)
 #  配置formatter
 debug_formatter = logging.Formatter(
     '%(asctime)s %(name)s %(levelname)s 模块名:%(module)s 函数名:%(funcName)s msg:%(message)s')
-static_formatter = logging.Formatter('%(asctime)s %(name)s %(levelname)s %(module)s %(funcName)s')
+static_formatter = logging.Formatter(
+    '%(asctime)s %(name)s %(levelname)s 模块名:%(module)s 函数名:%(funcName)s msg:%(message)s')
 # 对应的Handler设置Formatter
 debug_handler.setFormatter(debug_formatter)
 static_handler.setFormatter(static_formatter)
-

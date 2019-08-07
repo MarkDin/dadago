@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="gr__dailymile_com">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="description" content="Social training and racing for runners, triathletes, and cyclists.">
+    <meta name="keywords" content="">
+    <title>出错啦</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "helvetica neue", helvetica, arial, sans-serif;
+            font-size: 13px;
+            background: #8dd3d5 repeat-x 0 0;
+        }
+
+        #background {
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            margin-top: 15px;
+        }
+
+        #content {
+            position: absolute;
+            text-align: center;
+            top: 55px;
+            width: 100%;
+            z-index: 3;
+            text-shadow: 0 1px 1px #FFF;
+            min-height: 700px;
+            background: url("../static/pictures/shoes_hanging.png") no-repeat 50% 120px;
+        }
+
+        h1 {
+            color: #363C44;
+            font-size: 28pt;
+            font-weight: bold;
+            line-height: 25px;
+            margin-bottom: 0;
+        }
+
+        h2, p {
+            color: #64818E;
+            font-size: 15pt;
+            font-weight: normal;
+        }
+
+        p {
+            font-size: 13pt;
+        }
+
+        p a, p a:visited, a img {
+            color: #454545;
+            text-decoration: underline;
+            border: none;
+            outline: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="error_page">
+    <img id="background" src="../static/pictures/background.jpg" alt="clouds">
+    <div id="content">
+        <h1>{{ error_msg }}</h1>
+        <h2>DaDaGo</h2>
+        <h2>2014 - 2019</h2>
+        <p>继续查询: <a href="{{ url_for('index') }}">点击这里</a></p>
+    </div>
+</div>
+
+
+</body>
+</html>

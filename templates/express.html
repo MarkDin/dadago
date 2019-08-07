@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>快递</title>
+    <link rel="stylesheet" href="../static/KDNWidget.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            margin-left: 50px;
+            white-space: nowrap;
+        }
+
+        li:hover {
+            background: #006B53; /* 变换背景色 */
+            color: #34D2AF; /* 变换文字颜色 */
+        }
+
+        ul li {
+            display: inline;
+            float: left;
+            line-height: 30px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            padding: 10px 20px;
+            background: #1F7B67;
+            white-space: nowrap;
+
+        }
+
+        a:link {
+            text-decoration: none;
+            color: white;
+        }
+
+        a:active {
+            text-decoration: blink
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #D460CF
+        }
+    </style>
+    <script src="../static/show_express.js"></script>
+    <script src="../static/KDNWidget.js"></script>
+</head>
+<body>
+<div class="box">
+    <ul>
+        {% for content in contents %}
+            <li>
+                <a href="javascript:void(0);"
+                   onclick="show_express({{ content }})">{{ content.exp_date }}: {{ content.exp_number }}</a>
+
+            </li>
+        {% endfor %}
+
+    </ul>
+</div>
+
+<div id="logistics_box">
+
+</div>
+</body>
+</html>
