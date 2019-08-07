@@ -104,7 +104,7 @@ def select_template_as_file():
     return workbook
 
 
-def test(x, y, *data, ):
+def test(x, y, *data):
     print(data)
     print(x, y)
 
