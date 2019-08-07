@@ -82,7 +82,8 @@ def query_express_by_phone_number(number):
             res = []
 
     # 结果不为空
-    if res is []:
+
+    if len(res) is not 0:
         return res
     else:
         debug_logger.info('您要查询的手机号码不存在,请核对后查询\n')
