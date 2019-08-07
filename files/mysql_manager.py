@@ -72,15 +72,17 @@ def query_express_by_phone_number(number):
     # 使用sqlalchemy的query查询有问题 直接执行SQL语句
     sql_str = 'select express.`name`, express.express_number, express.date FROM express WHERE express.phone_number = {} AND ABS(DATEDIFF(date,CURDATE())) < 15 ORDER BY express.date desc'.format(
         number)
-    res = None
+    res = []
     try:
         # 注意返回的res是list类型
         res = engine.execute(sql_str).fetchall()
     except:
         # 表不存在,创建表
-        create_table(engine)
+        if create_table(engine):
+            res = []
+
     # 结果不为空
-    if res is not None:
+    if res is []:
         return res
     else:
         debug_logger.info('您要查询的手机号码不存在,请核对后查询\n')

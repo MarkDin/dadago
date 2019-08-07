@@ -35,6 +35,16 @@ def file_rename(file_path, file_name, file_ext, cnt=1):
         return file_rename(file_path, file_name, file_ext, cnt)
 
 
+@app.errorhandler(404)
+def page_404(e):
+    return render_template('error.html', error_msg='404error'), 404
+
+
+@app.errorhandler(500)
+def page_404(e):
+    return render_template('error.html', error_msg='500error'), 500
+
+
 @app.route('/')
 def index():
     return render_template('new_index.html')
@@ -54,9 +64,9 @@ def express_api(phone_number):
 @app.route('/express_query', methods={'get', 'post'})
 def express_query():
     # 获取ajax传来的快递单号
-    phone_number = request.form.get('phone_number').strip()
+    phone_number = request.form.get('phone_number')
     # datas是列表
-    datas = mysql_manager.query_express_by_phone_number(phone_number)  # 元组(姓名,单号,日期)
+    datas = mysql_manager.query_express_by_phone_number(phone_number.strip())  # 元组(姓名,单号,日期)
     # 单号存在
     if datas is not 1:
         exp_codes = []
