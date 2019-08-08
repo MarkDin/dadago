@@ -14,6 +14,43 @@ import my_path
 from my_log import debug_logger, static_logger
 
 
+def remove_white_space(data):
+    '''
+    取掉字符串中的空格
+    :return:
+    '''
+    new_data = []
+    for i in data:
+        i = str(i)
+        new_data.append(i.replace(' ', ''))
+    return new_data
+
+
+def get_phone_numbers(sheet):
+    '''
+    遍历电话号码 判断如果是小数就转换为整数
+    :param sheet:
+    :return: 整数类型的电话号码list
+    :type: list
+    '''
+    phone_numbers = []
+    # 遍历电话号码
+    nrows = sheet.nrows
+    # 电话号码在表格中的列的位置
+    col = 3
+    for i in range(1, nrows):
+        # 数据类型
+        ctype = sheet.cell(i, col).ctype
+        # 值
+        value = sheet.cell_value(i, col)
+        # 如果是小数
+        if ctype == 2 and value % 1 == 0.0:
+            # 转换成整数
+            value = int(value)
+        phone_numbers.append(value)
+    return phone_numbers
+
+
 def change_to_dict(file_path):
     '''
     将给定的Excel表格中需要的数据提取出来转换成dict返回
@@ -31,15 +68,12 @@ def change_to_dict(file_path):
     sheet = workbook.sheet_by_index(0)
     # 构建dict
     D = dict.fromkeys(['name', 'express_number', 'phone_number'])
-    # print(D)
-    # print(D.keys())
-    # D['name'] = sheet.col_values()
-    # 联系人
-    D['name'] = sheet.col_values(1)[1:]
+    D['name'] = remove_white_space(sheet.col_values(1)[1:])
     # 快递号码
-    D['express_number'] = sheet.col_values(2)[1:]
+    D['express_number'] = remove_white_space(sheet.col_values(2)[1:])
     # 电话
-    D['phone_number'] = sheet.col_values(3)[1:]
+    D['phone_number'] = get_phone_numbers(sheet)
+    # 看数据有无异常
     if len(D['name']) == len(D['express_number']) == len(D['phone_number']):
         return D
     else:
@@ -47,7 +81,7 @@ def change_to_dict(file_path):
         debug_logger.debug('导入Excel数据异常')
 
 
-def write(*data, username):
+def write(data, username):
     # 检测用户对应的文件名是否存在
     file_name = str(datetime.date.today()) + username + '.xlsx'
     file_path = os.path.join(my_path.EXCELS_PATH, 'download', file_name)
@@ -114,4 +148,5 @@ if __name__ == '__main__':
 
     # use_template(os.path.join('..\Excels\download', str(datetime.date.today()) + 'username' + '.xltx'))
 
-    test("asf", "dfasd", "dsfa", "ddddddd", "dfrtt")
+    res = remove_white_space(['df dfdf', '1 234 454', '  3543 353  '])
+    print(res)

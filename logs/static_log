@@ -24,3 +24,7 @@
 2019-08-05 19:48:17,553 static_logger ERROR 模块名:functions 函数名:address_correct_api msg:address_correct_api返回code值为1
 2019-08-05 19:48:27,152 static_logger ERROR 模块名:functions 函数名:address_correct_api msg:address_correct_api返回code值为1
 2019-08-06 09:23:29,983 static_logger ERROR 模块名:functions 函数名:info_resolve_api msg:info_resolve_api返回code值为1
+2019-08-08 10:02:15,000 static_logger ERROR 模块名:views 函数名:excel_upload msg:使用change_to_dict转换C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\Excels\upload\2019-08-08.xlsx失败
+2019-08-08 10:02:15,000 static_logger ERROR 模块名:views 函数名:excel_upload msg:使用change_to_dict转换C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\Excels\upload\2019-08-08.xlsx失败
+2019-08-08 10:06:58,649 static_logger ERROR 模块名:views 函数名:excel_upload msg:使用change_to_dict转换C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\Excels\upload\2019-08-08_1.xlsx失败
+2019-08-08 10:06:58,649 static_logger ERROR 模块名:views 函数名:excel_upload msg:使用change_to_dict转换C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\Excels\upload\2019-08-08_1.xlsx失败

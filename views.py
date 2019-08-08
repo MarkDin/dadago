@@ -96,8 +96,7 @@ def express_query():
         debug_logger.debug('express_query函数返回contents列表')
         return render_template('express.html', contents=contents)
     else:  # 单号不存在
-        print('您查询的手机号码的对应快递单号不存在,请核对后查询')
-        error_msg = '您查询的手机号码的对应快递单号不存在,请核对后查询'
+        error_msg = '您要查询的手机号码暂无单号,请等待上传数据或者核对后查询'
         return render_template('error.html', error_msg=error_msg)
 
 
@@ -129,7 +128,6 @@ def excel_upload():
             file.save(file_path)
         # 调用file_rename函数命名
         else:
-            debug_logger.debug('文件名重复了')
             file_path = file_rename(file_dir, file_name, file_ext, 1)
             file.save(file_path)
     debug_logger.debug('file_path: ' + file_path)
@@ -141,13 +139,17 @@ def excel_upload():
     except:
         static_logger.error('使用change_to_dict转换' + file_path + '失败')
         debug_logger.debug('使用change_to_dict转换' + file_path + '失败')
-        return '数据转换dict失败'
+        os.remove(file_path)
+        # 删除文件
+        return render_template('upload.html', msg='数据转换dict失败')
     # 写入数据库
     flag = mysql_manager.insert_into_database(Data)
     # 插入失败
     if flag:
         debug_logger.debug('数据插入失败')
         static_logger.error('数据插入失败')
-        return '插入数据库失败'
+        # 删除文件
+        os.remove(file_path)
+        return render_template('upload.html', msg='插入数据库失败')
     else:
-        return 'everything is ok'
+        return render_template('upload.html', msg='everything is ok')

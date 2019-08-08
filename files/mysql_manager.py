@@ -86,5 +86,5 @@ def query_express_by_phone_number(number):
     if len(res) is not 0:
         return res
     else:
-        debug_logger.info('您要查询的手机号码不存在,请核对后查询\n')
+        debug_logger.info('您要查询的手机号码暂无单号,请等待上传数据或者核对后查询\n')
         return 1
