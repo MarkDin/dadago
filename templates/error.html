@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" class="gr__dailymile_com">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="zh-CN" class="gr__dailymile_com">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -65,9 +65,14 @@
     <img id="background" src="../static/pictures/background.jpg" alt="clouds">
     <div id="content">
         <h1>{{ error_msg }}</h1>
+        {% with errors = get_flashed_messages() %}
+            {% for error in errors %}
+                <h1>{{ error }}</h1>
+            {% endfor %}
+        {% endwith %}
         <h2>DaDaGo</h2>
         <h2>2014 - 2019</h2>
-        <h1>继续查询: <a href="{{ url_for('index') }}">点击这里</a></h1>
+        <h1>返回: <a href="javascript:history.go(-1)">点击这里</a></h1>
     </div>
 </div>
 

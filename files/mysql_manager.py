@@ -2,26 +2,14 @@
 # -*- coding: utf-8 -*-
 # @Author: 丁珂
 # @Time: 2019/7/31 15:05
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, scoped_session
-from models import Express, base
+from models import *
 from my_log import debug_logger, static_logger
 import re
 
-'''
-因为一个项目总会有很多不同的应用需要操作同一个数据库或者多个不同的数据库(甚至是不同类型的数据库),
-需要生成不同的可操作性的数据库对像来区分,传入的engine参数就代表了不同的数据库连接
-'''
-engine = create_engine("mysql+pymysql://root:154310@116.62.4.61/dadago", isolation_level="READ UNCOMMITTED",
-                       encoding='utf-8', echo=False)
-mysql_dbsession = scoped_session(sessionmaker())
-# 将engine连接的数据库绑定到mysql_dbsession
-mysql_dbsession.configure(bind=engine)
 
-
-def create_table(engine):
+def create_table(engine, table_name):
     '''
-    先判断表是否存在, 不存在则创建
+    先根据传入的table_name判断表是否存在, 不存在则创建
     :param engine:
     :return: 1:存在; 0:不存在,创建成功
     '''
@@ -30,7 +18,7 @@ def create_table(engine):
     table_list = re.findall('(\'.*?\')', str(tables))
     table_list = [re.sub("'", '', each) for each in table_list]
     # 如果表已经存在
-    if 'express' in table_list:
+    if table_name in table_list:
         return 1
     # 不存在
     else:
@@ -69,6 +57,7 @@ def query_express_by_phone_number(number):
     :param number: 要查询的电话号码
     :return: 单号不存在:1; 存在:单号加姓名的list list里面元素为元组(姓名,单号,日期)
     '''
+    print(number)
     # 使用sqlalchemy的query查询有问题 直接执行SQL语句
     sql_str = 'select express.`name`, express.express_number, express.date FROM express WHERE express.phone_number = {} AND ABS(DATEDIFF(date,CURDATE())) < 15 ORDER BY express.date desc'.format(
         number)
@@ -78,7 +67,7 @@ def query_express_by_phone_number(number):
         res = engine.execute(sql_str).fetchall()
     except:
         # 表不存在,创建表
-        if create_table(engine):
+        if create_table(engine, 'express'):
             res = []
 
     # 结果不为空
@@ -88,3 +77,7 @@ def query_express_by_phone_number(number):
     else:
         debug_logger.info('您要查询的手机号码暂无单号,请等待上传数据或者核对后查询\n')
         return 1
+
+
+if __name__ == '__main__':
+    create_table(engine, 'excelUser')

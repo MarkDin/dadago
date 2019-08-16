@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>顾客信息分割提取</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <style>
+
+        #left {
+            float: left;
+            width: 60%;
+            height: 65%;
+        }
+
+        #text {
+            width: 95%;
+            min-height: 500px;
+            height: auto;
+        }
+
+        #right {
+            padding-left: 5%;
+            float: left;
+        }
+
+        #show div {
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        p {
+            display: inline-block;
+        }
+
+        h1 {
+            color: red;
+        }
+
+        #bt {
+            background-color: #4caf50;
+        }
+
+        #bt:hover {
+            background-color: #1F7B67;
+        }
+
+    </style>
+</head>
+<body>
+<div>
+    <div id="left">
+        <textarea id="text" style="font-size: 20px;" placeholder="请输入顾客发送的信息"></textarea>
+        <div>
+            <button id="bt" style="width: 200px; height: 40px; margin-left: 38%" onclick="get_text()">测试</button>
+
+        </div>
+    </div>
+
+    <div id="right">
+        <div id="show">
+            <div><p>名字（name）：</p><span></span></div>
+            <div><p>电话号码（mobile）：</p><span></span></div>
+            <div><p>省（province_name）：</p><span></span></div>
+            <div><p>城市名称（city_name）：</p><span></span></div>
+            <div><p>区县名称（county_name）：</p><span></span></div>
+            <div><p>详细地址（detail）：</p><span></span></div>
+        </div>
+        {% with errors = get_flashed_messages(category_filter=["EXCEL_ERROR"]) %}
+            {% for error in errors %}
+                <h1>{{ error }}</h1>
+            {% endfor %}
+        {% endwith %}
+    </div>
+</div>
+
+</div>
+</body>
+<script>
+    function get_text() {
+        // 获取文本文字
+        var text = $('#text').val();
+        $.ajax({
+            // 请求方式
+            type: "POST",
+            url: "/address_resolve",
+            // 传入的参数
+            data: {'text': text},
+            // 预期接收的参数类型
+            dataType: "json",
+            success: function (content) {
+                // 获取info数组
+                $('span').each(
+                    function (i, val) {
+                        $(this).text(content.info[i]);
+                    }
+                );
+                alert(content.msg)
+            }
+        });
+    }
+</script>
+</html>

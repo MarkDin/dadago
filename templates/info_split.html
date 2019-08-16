@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>信息分割提取到excel表格</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <style>
+
         #left {
             float: left;
+            width: 60%;
+            height: 65%;
+        }
 
+        #text {
+            width: 95%;
+            min-height: 500px;
+            height: auto;
         }
 
         #right {
-            padding-left: 40px;
+            padding-left: 5%;
             float: left;
         }
 
@@ -23,31 +32,138 @@
             display: inline-block;
         }
 
+        #user-tip {
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: auto;
+            position: absolute;
+            right: 30px;
+            top: 0;
+        }
+
+        h1 {
+            color: red;
+        }
+
+        /* 容器 <div> - 需要定位下拉内容 */
+        .dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 140px;
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* 下拉菜单的链接 */
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        /* 在鼠标移上去后显示下拉菜单 */
+        .dropdown:hover .dropdown-content {
+            display: inline-block;
+        }
+
+        /* 当下拉内容显示后修改下拉按钮的背景颜色 */
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+
+        /* 鼠标移上去后修改下拉菜单链接颜色 */
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        #bt {
+            background-color: #4caf50;
+        }
+
+        #bt:hover {
+            background-color: #1F7B67;
+        }
 
     </style>
 </head>
 <body>
 <div>
     <div id="left">
-        <textarea style="min-width:600px;min-height:500px;font-size: 20px;" placeholder="请输入核对信息"></textarea>
-    </div>
-    <div id="right">
-        <div id="show">
-            <div><p>电话号码（mobile）：</p><span>fjdsfjl</span></div>
-            <div><p>名字（name）：</p><span>rtgsdg</span></div>
-            <div><p>备注（note）：</p><span></span></div>
-            <div><p>省ID（province_id）：</p><span></span></div>
-            <div><p>省（province_name）：</p><span></span></div>
-            <div><p>省简称（province_shortname）：</p><span></span></div>
-            <div><p>城市ID（city_id）：</p><span></span></div>
-            <div><p>城市名称（city_name）：</p><span></span></div>
-            <div><p>城市简称（city_shortname）：</p><span></span></div>
-            <div><p>区县ID（county_id）：</p><span></span></div>
-            <div><p>区县名称（county_name）：</p><span></span></div>
-            <div><p>区县简称（county_shortname）：</p><span></span></div>
-            <div><p>详细地址（detail）：</p><span></span></div>
+        <textarea id="text" style="font-size: 20px;" placeholder="请输入核对信息"></textarea>
+        <div>
+            <button id="bt" style="width: 200px; height: 40px; margin-left: 38%" onclick="get_text()">测试</button>
+            {#            <button id="confirm" style="width: 200px; height: 40px; margin-left: 38%" onclick="write()">提交</button>#}
         </div>
     </div>
 
+    <div id="right">
+        <div id="show">
+            <div><p>名字（name）：</p><span></span></div>
+            <div><p>电话号码（mobile）：</p><span></span></div>
+            <div><p>省（province_name）：</p><span></span></div>
+            <div><p>城市名称（city_name）：</p><span></span></div>
+            <div><p>区县名称（county_name）：</p><span></span></div>
+            <div><p>详细地址（detail）：</p><span></span></div>
+            <div><p>物品名称（item）：</p><span></span></div>
+            <div><p>备注（note）：</p><span></span></div>
+            <div><p>物品数量（number）：</p><span></span></div>
+            <div><p>销售金额（price）：</p><span></span></div>
+        </div>
+        {% with errors = get_flashed_messages(category_filter=["EXCEL_ERROR"]) %}
+            {% for error in errors %}
+                <h1>{{ error }}</h1>
+            {% endfor %}
+        {% endwith %}
+        <div class="dropdown" id="user-tip" style="color: #ff7a11">
+            <button class="dropbtn">欢迎你,{{ session.get('user') }}</button>
+            <div class="dropdown-content">
+                <a href="{{ url_for('logout') }}">退出登录</a>
+                <a href="{{ url_for('excel_download') }}">下载excel文件</a>
+            </div>
+        </div>
+    </div>
+
+</div>
 </body>
+<script>
+    function get_text() {
+        // 获取文本文字
+        var text = $('#text').val();
+        $.ajax({
+            // 请求方式
+            type: "POST",
+            url: "/info_resolve",
+            // 传入的参数
+            data: {'text': text},
+            // 预期接收的参数类型
+            dataType: "json",
+            success: function (content) {
+                // 获取info数组
+                $('span').each(
+                    function (i, val) {
+                        $(this).text(content.info[i]);
+                    }
+                );
+                // 返回提示信息
+                alert(content.msg);
+                $('#confirm').click()
+            }
+        });
+    }
+</script>
 </html>

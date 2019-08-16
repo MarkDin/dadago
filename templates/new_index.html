@@ -1,22 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <title>dadago快递查询</title>
+    <title>DADAGO&MVP快递单号查询</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="../static/KDNWidget.js"></script>
     <script src="../static/check.js"></script>
     <style>
         body {
-            color: #1F7B67;
+            color: #ff1638;
             font-family: "Monotype Corsiva", "Apple Chancery", "URW Chancery L", cursive;
             text-align: center;
-            background: url('../static/pictures/dada2.jpg');
-            position: fixed;
-            top: 35%;
-            left: 14%;
+            background-image: url('../static/pictures/dada2.png');
             width: 100%;
             height: 100%;
             min-width: 400px;
@@ -30,49 +27,51 @@
             background-position: center 0;
         }
 
-        #text-typed {
-            height: auto;
-            white-space: inherit;
-            border: 1px solid;
-            border-radius: 0;
-            width: 250px;
-        }
-
-
         #content {
-
-            width: 300px;
-            height: 90px;
-
-            border: 1px solid red;
+            font-size: 19px;
+            text-align: center;
+            position: absolute;
             top: 50%;
             left: 50%;
-            margin-top: 20px;
-            margin-left: -30px;
-        {#top: 70%;#}{#left: 70%;#}{#transform: translate(-36%, -50%);#}
+            width: auto;
+            transform: translate(-50%, -50%);
+            padding: 1em;
         }
 
+        #text-typed {
+            text-align: center;
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 1em;
+        }
 
     </style>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="../static/typed.js"></script>
 </head>
 <body>
-<div id="home">
-    <div id="search">
 
-        <div id="text-typed">
-            <h1><span id="head-title" style=" font-size: 18px;"></span></h1>
-        </div>
-    </div>
-
-</div>
 <div id="content">
+    <p>输入下单时的手机号查询</p>
+    {% with errors = get_flashed_messages(category_filter=["express_query"]) %}
+        {% if errors %}
+            <p>{{ errors[0] }}</p>
+        {% endif %}
+    {% endwith %}
     <form id="myForm" method="post" action="/express_query">
-        <p>输入下单时的手机号查询</p>
-        <input id="phone_number" type="text" placeholder="手机号码" name="phone_number">
-        <input style="color: #ff7721" class="btn" type="button" value="查询" onclick=check()>
+        <input id="phone_number" style="height: 40px; width: 220px; text-align: center" type="text" placeholder="手机号码"
+               name="phone_number">
+        <input style="color: #ff1638;height: 35px; width: 120px" class="btn" type="button" value="查询" onclick=check()>
     </form>
+</div>
+
+<div id="text-typed" style="border: 1px solid; color: #ff7a11; width:350px;max-height: 90px; padding: 0; margin: 0">
+    <h1><span id="head-title" style=" font-size: 22px;"></span></h1>
+</div>
+<div id="botton_img">
+    <img src="">
 </div>
 <script>
     $("#head-title").typed({

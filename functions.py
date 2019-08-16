@@ -6,9 +6,8 @@ import string
 
 import re
 import urllib
-
 import requests
-from my_log import debug_logger, static_logger
+from files.my_log import debug_logger, static_logger
 import time, hashlib, json
 
 
@@ -200,7 +199,7 @@ def customer_info_parse(info):  # 信息必须在一行
     '''
     先调用info_resolve_api将电话 姓名解析出来,然后在源信息中去掉姓名电话 再调用address_correct_api
     :param info:
-    :return:
+    :return: data{'name', 'city'........}
     '''
     data = info_resolve_api(info)
     # 返回的所需信息完整
@@ -217,30 +216,46 @@ def customer_info_parse(info):  # 信息必须在一行
         data = address_correct_api(info)
         data['name'] = name
         data['mobile'] = mobile
-        debug_logger.debug('1 ' + str(data))
+        # debug_logger.debug('1 ' + str(data))
         return data
-
-
     else:
-        debug_logger.debug('2: ' + str(data))
+        # debug_logger.debug('2: ' + str(data))
         return data
 
 
 def info_split(text, sign):
-    data = {}
-    info = text.split(sign, 4)
-    print(info)
-    # 商品名称和尺码
-    data['item'] = info[0]
-    # 零售价格
-    data['price'] = info[1]
-    # 商品数量
-    data['number'] = info[2]
-    # 备注信息 eg:分开发 补差价 退换货
-    data['note'] = info[3]
-    # 顾客发的信息
-    data['customer_info'] = info[4]
-    print(data)
+    data = {'error': 0}
+    # 将中文逗号用英文逗号替换
+    text = text.replace('，', ',')
+    try:
+        info = text.split(sign, 4)
+        # 商品名称和尺码
+        data['item'] = info[0].replace(' ', '')
+        # 零售价格
+        data['price'] = re.search('\d+', info[1]).group().replace(' ', '')
+        # 商品数量
+        data['number'] = re.search('\d+', info[2]).group().replace(' ', '')
+        # 备注信息 eg:分开发 补差价 退换货
+        data['note'] = info[3].replace(' ', '')
+        # 顾客发的信息
+        data['customer_info'] = info[4]
+
+        # 检查商品价格和商品数量是否需要交换位置
+        if len(str(data['price'])) < len(str(data['number'])):
+            data['price'], data['number'] = data['number'], data['price']
+        # 如果是退换货 则商品数量设为0
+        if data['note'] == '退换货':
+            data['number'] = 0
+    except:
+        data['error'] = 1
+        return data
+        # print(data)
+    D = customer_info_parse(data['customer_info'])
+    for key, value in D.items():
+        data[key] = value
+    return data
+
+
 
 
 if __name__ == '__main__':
@@ -250,4 +265,4 @@ if __name__ == '__main__':
     # print(data['district'])
     # print(data['address'])
     # 前山工业园福溪工业区福田路10号博杰电子电话：15886648166收件人：周宏杰
-    info_split('B类特价三叶草金标贝壳头3号36.5!零售199! 2! 退换货! 长沙市雨花区左家塘街道桂花二村附20栋2单元404大姚   15574996073', '!')
+    info_split('B类特价三叶草金标贝壳头3号36.5!零售199! 2! 退换货! 长沙市雨花区左家塘街道桂花二村附20栋2单元404丁姚   15574996073', '!')

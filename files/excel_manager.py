@@ -3,27 +3,51 @@
 # @Author: 丁珂
 # @Time: 2019/7/31 15:04
 import datetime
-
+from flask import flash
+# sys.path.append()
 import xlrd
-import openpyxl
 import os
-
+import re
 from openpyxl import load_workbook
 
 import my_path
 from my_log import debug_logger, static_logger
 
 
-def remove_white_space(data):
+def remove_white_space(data, flag=0):
     '''
     取掉字符串中的空格
     :return:
     '''
+    # 表示传入的是号码
     new_data = []
-    for i in data:
-        i = str(i)
-        new_data.append(i.replace(' ', ''))
-    return new_data
+    if flag:
+        # 进行合法性检查
+        for index, number in enumerate(data):
+            number = str(number).strip()
+            number = number.replace(' ', '')
+            # 检查号码中数字长度是否为11位 且等于总长度11(说明没有其他字符)
+            # print(1, number, type(number))
+            try:
+                if number is not None and len(number) == len(re.search('\d+', number).group()) == 11:
+                    new_data.append(number)
+                else:
+                    msg = 'Excel中第' + str(index + 2) + '行' + '电话号码有误' + '号码为:' + number
+                    # print(2,number+str(1))
+                    static_logger.error(msg)
+                    flash(msg, 'EXCEL_ERROR')
+            except:
+                msg = 'Excel中第' + str(index + 2) + '行' + '电话号码有误' + '号码为:' + number
+                # print(2,number+str(1))
+                static_logger.error(msg)
+                flash(msg, 'EXCEL_ERROR')
+        return new_data
+    # 其余字段不进行合法性检查
+    else:
+        for i in data:
+            i = str(i)
+            new_data.append(i.replace(' ', ''))
+        return new_data
 
 
 def get_phone_numbers(sheet):
@@ -72,13 +96,15 @@ def change_to_dict(file_path):
     # 快递号码
     D['express_number'] = remove_white_space(sheet.col_values(2)[1:])
     # 电话
-    D['phone_number'] = get_phone_numbers(sheet)
+    D['phone_number'] = remove_white_space(get_phone_numbers(sheet), 1)
     # 看数据有无异常
     if len(D['name']) == len(D['express_number']) == len(D['phone_number']):
         return D
     else:
         static_logger.error('导入Excel数据异常')
         debug_logger.debug('导入Excel数据异常')
+        return 1
+
 
 
 def write(data, username):
@@ -91,13 +117,20 @@ def write(data, username):
     else:
         # 不存在从模板获取workbook
         workbook = select_template_as_file()
-    # 文件不存在则创建
-    if workbook:
+    #
+    if workbook and workbook != 1:
         # grab the active worksheet
         sheet = workbook.active
         sheet.append(data)
+        # next_row = sheet.max_row + 1
+        # for i in range(1,len(data)+1):
+        #     sheet.cell(next_row, i).value = data[i-1]
         # Save the file
-        workbook.save(os.path.join(my_path.EXCELS_PATH, 'download', file_name))
+        try:
+            workbook.save(os.path.join(my_path.EXCELS_PATH, 'download', file_name))
+        except:
+            flash('Excel表格被其他程序占用,请先关闭excel表格', 'EXCEL_ERROR')
+            return 1
         # row = [u'收件人姓名', u'手机/电话', u'省', u'市', u'区', u'地址', u'物品名称', u'备注', u'数量', u'销售金额']
         return 0
     return 1
@@ -134,7 +167,8 @@ def select_template_as_file():
         sheet = workbook.active
         workbook.template = False
     except:
-        static_logger.error('使用Excel模板文件失败')
+        debug_logger.debug('使用Excel模板文件失败')
+        flash('使用Excel模板文件失败', 'EXCEL_ERROR')
     return workbook
 
 
@@ -148,5 +182,6 @@ if __name__ == '__main__':
 
     # use_template(os.path.join('..\Excels\download', str(datetime.date.today()) + 'username' + '.xltx'))
 
-    res = remove_white_space(['df dfdf', '1 234 454', '  3543 353  '])
-    print(res)
+    # select_file_as_template(r'C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\templates\template.xlsx')
+    # select_template_as_file().save('t.xlsx')
+    write(['1', '2', '3'], 'test')

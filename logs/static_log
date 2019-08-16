@@ -28,3 +28,107 @@
 2019-08-08 10:02:15,000 static_logger ERROR 模块名:views 函数名:excel_upload msg:使用change_to_dict转换C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\Excels\upload\2019-08-08.xlsx失败
 2019-08-08 10:06:58,649 static_logger ERROR 模块名:views 函数名:excel_upload msg:使用change_to_dict转换C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\Excels\upload\2019-08-08_1.xlsx失败
 2019-08-08 10:06:58,649 static_logger ERROR 模块名:views 函数名:excel_upload msg:使用change_to_dict转换C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\Excels\upload\2019-08-08_1.xlsx失败
+2019-08-09 11:13:06,799 static_logger ERROR 模块名:views 函数名:excel_upload msg:使用change_to_dict转换C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\Excels\upload\2019-08-09.xlsx失败
+2019-08-09 11:13:06,799 static_logger ERROR 模块名:views 函数名:excel_upload msg:使用change_to_dict转换C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\Excels\upload\2019-08-09.xlsx失败
+2019-08-09 14:55:06,743 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第4行电话号码长度有误
+2019-08-09 14:55:06,743 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第4行电话号码长度有误
+2019-08-09 14:55:06,744 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第5行电话号码不是纯数字
+2019-08-09 14:55:06,744 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第5行电话号码不是纯数字
+2019-08-09 14:56:18,484 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第4行电话号码长度有误
+2019-08-09 14:56:18,484 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第4行电话号码长度有误
+2019-08-09 14:56:18,485 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第5行电话号码不是纯数字
+2019-08-09 14:56:18,485 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第5行电话号码不是纯数字
+2019-08-10 15:37:58,919 static_logger ERROR 模块名:functions 函数名:address_correct_api msg:address_correct_api返回code值为1
+2019-08-10 15:37:58,919 static_logger ERROR 模块名:functions 函数名:address_correct_api msg:address_correct_api返回code值为1
+2019-08-11 17:42:28,411 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第29行电话号码有误号码为:18873059870
+
+2019-08-11 17:42:28,411 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第29行电话号码有误号码为:18873059870
+
+2019-08-11 17:42:28,413 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第30行电话号码有误号码为:18890423188
+
+2019-08-11 17:42:28,413 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第30行电话号码有误号码为:18890423188
+
+2019-08-11 17:42:28,413 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第31行电话号码有误号码为:13786749956
+
+2019-08-11 17:42:28,413 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第31行电话号码有误号码为:13786749956
+
+2019-08-11 17:42:28,413 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第32行电话号码有误号码为:15973038567
+
+2019-08-11 17:42:28,413 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第32行电话号码有误号码为:15973038567
+
+2019-08-11 17:42:28,413 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第33行电话号码有误号码为:13548961200
+
+2019-08-11 17:42:28,413 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第33行电话号码有误号码为:13548961200
+
+2019-08-11 17:42:28,414 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第84行电话号码有误号码为:1819622102
+2019-08-11 17:42:28,414 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第84行电话号码有误号码为:1819622102
+2019-08-11 17:42:28,415 static_logger ERROR 模块名:excel_manager 函数名:change_to_dict msg:导入Excel数据异常
+2019-08-11 17:42:28,415 static_logger ERROR 模块名:excel_manager 函数名:change_to_dict msg:导入Excel数据异常
+2019-08-11 17:42:44,870 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第29行电话号码有误号码为:18873059870
+
+2019-08-11 17:42:44,870 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第29行电话号码有误号码为:18873059870
+
+2019-08-11 17:42:44,870 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第30行电话号码有误号码为:18890423188
+
+2019-08-11 17:42:44,870 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第30行电话号码有误号码为:18890423188
+
+2019-08-11 17:42:44,871 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第31行电话号码有误号码为:13786749956
+
+2019-08-11 17:42:44,871 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第31行电话号码有误号码为:13786749956
+
+2019-08-11 17:42:44,871 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第32行电话号码有误号码为:15973038567
+
+2019-08-11 17:42:44,871 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第32行电话号码有误号码为:15973038567
+
+2019-08-11 17:42:44,871 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第33行电话号码有误号码为:13548961200
+
+2019-08-11 17:42:44,871 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第33行电话号码有误号码为:13548961200
+
+2019-08-11 17:42:44,872 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第84行电话号码有误号码为:1819622102
+2019-08-11 17:42:44,872 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第84行电话号码有误号码为:1819622102
+2019-08-11 17:42:44,872 static_logger ERROR 模块名:excel_manager 函数名:change_to_dict msg:导入Excel数据异常
+2019-08-11 17:42:44,872 static_logger ERROR 模块名:excel_manager 函数名:change_to_dict msg:导入Excel数据异常
+2019-08-11 18:02:57,215 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第84行电话号码有误号码为:1819622102
+2019-08-11 18:02:57,215 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第84行电话号码有误号码为:1819622102
+2019-08-11 18:02:57,216 static_logger ERROR 模块名:excel_manager 函数名:change_to_dict msg:导入Excel数据异常
+2019-08-11 18:02:57,216 static_logger ERROR 模块名:excel_manager 函数名:change_to_dict msg:导入Excel数据异常
+2019-08-11 19:17:04,168 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第27行电话号码有误号码为:1821746986
+2019-08-11 19:17:04,168 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第27行电话号码有误号码为:1821746986
+2019-08-11 19:17:04,168 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第46行电话号码有误号码为:15310706870t
+2019-08-11 19:17:04,168 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第46行电话号码有误号码为:15310706870t
+2019-08-11 19:18:55,008 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第27行电话号码有误号码为:1821746986
+2019-08-11 19:18:55,008 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第27行电话号码有误号码为:1821746986
+2019-08-11 19:18:55,009 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第46行电话号码有误号码为:15310706870t
+2019-08-11 19:18:55,009 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第46行电话号码有误号码为:15310706870t
+2019-08-11 19:19:31,457 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第27行电话号码有误号码为:1821746986
+2019-08-11 19:19:31,457 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第27行电话号码有误号码为:1821746986
+2019-08-11 19:19:31,457 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第46行电话号码有误号码为:15310706870t
+2019-08-11 19:19:31,457 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第46行电话号码有误号码为:15310706870t
+2019-08-11 19:35:41,677 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第262行电话号码有误号码为:
+2019-08-11 19:35:41,677 static_logger ERROR 模块名:excel_manager 函数名:remove_white_space msg:Excel中第262行电话号码有误号码为:
+2019-08-11 19:35:41,677 static_logger ERROR 模块名:excel_manager 函数名:change_to_dict msg:导入Excel数据异常
+2019-08-11 19:35:41,677 static_logger ERROR 模块名:excel_manager 函数名:change_to_dict msg:导入Excel数据异常
+2019-08-14 15:31:58,496 static_logger ERROR 模块名:excel_manager 函数名:select_template_as_file msg:使用Excel模板文件失败
+2019-08-14 15:31:58,496 static_logger ERROR 模块名:excel_manager 函数名:select_template_as_file msg:使用Excel模板文件失败
+2019-08-14 15:31:58,499 static_logger ERROR 模块名:excel_manager 函数名:select_template_as_file msg:使用Excel模板文件失败
+2019-08-14 15:31:58,499 static_logger ERROR 模块名:excel_manager 函数名:select_template_as_file msg:使用Excel模板文件失败
+2019-08-14 15:32:28,436 static_logger ERROR 模块名:excel_manager 函数名:select_template_as_file msg:使用Excel模板文件失败
+2019-08-14 15:32:28,436 static_logger ERROR 模块名:excel_manager 函数名:select_template_as_file msg:使用Excel模板文件失败
+2019-08-14 15:32:28,440 static_logger ERROR 模块名:excel_manager 函数名:select_template_as_file msg:使用Excel模板文件失败
+2019-08-14 15:32:28,440 static_logger ERROR 模块名:excel_manager 函数名:select_template_as_file msg:使用Excel模板文件失败
+2019-08-14 15:35:20,136 static_logger ERROR 模块名:excel_manager 函数名:select_template_as_file msg:使用Excel模板文件失败
+2019-08-14 15:37:16,276 static_logger ERROR 模块名:excel_manager 函数名:select_template_as_file msg:使用Excel模板文件失败
+2019-08-14 15:51:32,924 static_logger ERROR 模块名:excel_manager 函数名:select_file_as_template msg:读取C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\templates\template.xlsx失败
+2019-08-14 16:36:45,511 static_logger ERROR 模块名:excel_manager 函数名:select_file_as_template msg:读取C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\templates\template.xlsx失败
+2019-08-14 16:54:53,314 static_logger ERROR 模块名:excel_manager 函数名:select_file_as_template msg:读取C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\templates\template.xlsx失败
+2019-08-14 17:01:33,835 static_logger ERROR 模块名:excel_manager 函数名:select_file_as_template msg:读取C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\templates\template.xlsx失败
+2019-08-14 17:18:02,791 static_logger ERROR 模块名:excel_manager 函数名:select_file_as_template msg:读取C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\templates\template.xlsx失败
+2019-08-14 17:23:34,434 static_logger ERROR 模块名:excel_manager 函数名:select_file_as_template msg:读取C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\templates\template.xlsx失败
+2019-08-14 18:00:28,683 static_logger ERROR 模块名:excel_manager 函数名:select_file_as_template msg:读取C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\templates\template.xlsx失败
+2019-08-14 20:22:28,896 static_logger ERROR 模块名:excel_manager 函数名:select_file_as_template msg:读取C:\Users\Administrator\PycharmProjects\test1\dadago\web_by_flask\templates\template.xlsx失败
+2019-08-15 09:56:23,231 static_logger ERROR 模块名:functions 函数名:address_correct_api msg:address_correct_api返回code值为1
+2019-08-15 09:56:23,231 static_logger ERROR 模块名:functions 函数名:address_correct_api msg:address_correct_api返回code值为1
+2019-08-15 17:30:16,809 static_logger ERROR 模块名:functions 函数名:info_resolve_api msg:info_resolve_api返回code值为1
+2019-08-15 17:30:16,809 static_logger ERROR 模块名:functions 函数名:info_resolve_api msg:info_resolve_api返回code值为1
+2019-08-15 17:31:36,477 static_logger ERROR 模块名:functions 函数名:info_resolve_api msg:info_resolve_api返回code值为1
+2019-08-15 17:31:36,477 static_logger ERROR 模块名:functions 函数名:info_resolve_api msg:info_resolve_api返回code值为1

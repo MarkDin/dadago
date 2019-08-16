@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <title>上传Excel文件</title>
@@ -10,5 +10,14 @@
     <input type="submit" name="submit" value="上传到服务器处理">
 </form>
 <h1>{{ msg }}</h1>
+{#打印Excel表格具体的错误信息#}
+{% with errors = get_flashed_messages(category_filter=["EXCEL_ERROR"]) %}
+    {% if errors %}
+        {% for error in errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+
+    {% endif %}
+{% endwith %}
 </body>
 </html>

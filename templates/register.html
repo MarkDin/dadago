@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="keywords" content=""/>
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+    <link href="../static/css/register.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900" rel="stylesheet">
+</head>
+<body>
+<div class="signupform">
+    <h1>Interior Register Form</h1>
+    <div class="container">
+
+        <div class="agile_info">
+            <div class="w3l_form">
+                <div class="left_grid_info">
+                    <h3> DADAGO 欢迎你!</h3>
+                    <h4>Lorem ipsum dolor sit amet, nulla consectetur adipiscing elit Sed.</h4>
+                    <p> 功能有将.</p>
+                    <ul class="social_section_1info">
+                        <li><a href="#" class="w3_facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="w3_twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="w3_instagram"><i class="fa fa-instagram"></i></a></li>
+                        <li><a href="#" class="w3_google"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="w3_pinterest"><i class="fa fa-pinterest"></i></a></li>
+                        <li><a href="#" class="w3_vimeo"><i class="fa fa-vimeo"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w3_info">
+                {% set errors = get_flashed_messages(category_filter=["REGISTER"]) %}
+                {% if errors %}
+                    {% for error in errors %}
+                        <h2>{{ error }}</h2>
+                    {% endfor %}
+                {% else %}
+                    <h2>注册一个账号</h2>
+                {% endif %}
+
+                <p>Vestibulum est nulla, fermentum eget euismod et, tincidunt at dui dolor sit.</p>
+                <form action="/register_check" method="post">
+                    <div class="input-group">
+                        <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                        <input type="text" name="username" placeholder="用户名">
+                    </div>
+                    <div class="input-group">
+                        <span><i class="fa fa-user" aria-hidden="true"></i></span>
+                        <input type="text" name="name" placeholder="姓名">
+                    </div>
+                    <div class="input-group">
+                        <span><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        <input type="Password" name="password" placeholder="密码">
+                    </div>
+                    <div class="input-group">
+                        <span><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        <input type="Password" name="confirm" placeholder="确认密码">
+                    </div>
+
+                    <button class="btn btn-danger btn-block" type="submit">注册账号</button>
+                </form>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+    </div>
+    <div class="footer">
+
+        <p>Copyright &copy; 2018.Company name All rights reserved.More Templates </p>
+    </div>
+</div>
+</body>
+</html>
