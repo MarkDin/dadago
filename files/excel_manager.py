@@ -121,10 +121,11 @@ def write(data, username):
     if workbook and workbook != 1:
         # grab the active worksheet
         sheet = workbook.active
-        sheet.append(data)
-        # next_row = sheet.max_row + 1
-        # for i in range(1,len(data)+1):
-        #     sheet.cell(next_row, i).value = data[i-1]
+        # sheet.append(data)
+        next_row = sheet.max_row + 1
+        for i in range(1, len(data) + 1):
+            sheet.cell(next_row, i).value = data[i - 1]
+            print(type(data[i - 1]))
         # Save the file
         try:
             workbook.save(os.path.join(my_path.EXCELS_PATH, 'download', file_name))

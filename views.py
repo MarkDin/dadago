@@ -197,8 +197,8 @@ def info_resolve():
     res.append(data['address'])
     res.append(data['item'])
     res.append(username + data['note'])
-    res.append(data['number'])
-    res.append(data['price'])
+    res.append(int(data['number']))
+    res.append(int(data['price']))
     # 如果有信息缺失
     if msg != '':
         return jsonify({'info': res, 'msg': '缺失的信息有' + msg})
@@ -301,11 +301,8 @@ def login_check():
             session['is_login'] = True
             session.permanent = True
             response = make_response(redirect('/resolve'))
-            date = str(datetime.date.today())
             # 添加username到cookie
             response.set_cookie(key='username', value=username, max_age=60 * 60 * 24)
-            # 添加用户的excel文件名到cookie
-            response.set_cookie(key='filename', value=date + username, max_age=60 * 60 * 24)
             return response
             # return redirect('/resolve')
         else:
@@ -318,7 +315,8 @@ def login_check():
 
 @app.route('/downloadpath')
 def excel_download():
-    filename = request.cookies.get('filename') + '.xlsx'
+    date = str(datetime.date.today())
+    filename = date + request.cookies.get('username') + '.xlsx'
     dir_path = os.path.join(my_path.EXCELS_PATH, 'download')
     if not os.path.exists(os.path.join(dir_path, filename)):
         # return Response('未成功录入核对信息前,文件未创建,请先输入核对信息')
